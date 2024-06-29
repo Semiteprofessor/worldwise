@@ -1,0 +1,56 @@
+.appNav {
+  width: 250px;
+  background-color: #404242;
+  margin-top: 50px;
+}
+
+.tabList {
+  height: 30px;
+  display: flex;
+  list-style: none;
+  font-size: 18px;
+  padding: 0;
+  margin: 0;
+}
+
+.tabs {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #80808013;
+  position: relative;
+  cursor: pointer;
+}
+
+.tabs a {
+  text-decoration: none;
+  color: white;
+}
+
+.tabs:not(:last-child) {
+  border-right: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+.activeTabs {
+  background: #eeeded;
+  color: black;
+}
+
+.activeTabs a {
+  font-weight: 600;
+  color: black;
+  text-decoration: none;
+}
+
+.activeTabs::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% + 2px);
+  height: 4px;
+  background: #5893f1;
+}

@@ -1,0 +1,28 @@
+.nav {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav ul {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.nav :global(.active) {
+  padding: 5px;
+  border-radius: 3px;
+  background-color: green;
+  box-shadow: 3px 3px 0 white;
+}
+
+.nav ul li a {
+  text-transform: uppercase;
+  text-decoration: none;
+  color: white;
+  font-weight: 500;
+}

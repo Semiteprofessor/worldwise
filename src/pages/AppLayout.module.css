@@ -1,0 +1,14 @@
+.appLayout {
+  height: calc(100vh - 5rem);
+  margin: 1.5rem;
+  /* padding: 2.5rem 5rem; */
+}
+
+
+.appLayout section {
+  display: flex;
+  flex-direction: row;
+  height: 85%;
+  /* align-items: center; */
+  /* justify-content: center; */
+}

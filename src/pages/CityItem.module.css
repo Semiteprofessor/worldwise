@@ -1,0 +1,41 @@
+li {
+  list-style: none;
+}
+
+li a {
+  text-decoration: none;
+}
+
+.cityItem {
+  list-style: none;
+  color: white;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #383f42;
+  border-radius: 5px;
+  border-left: 4px solid #1b9453;
+  padding: 8px;
+  margin-top: 7px;
+  font-size: 14px;
+}
+
+.cityItem .group {
+  display: flex;
+  gap: 10px;
+}
+
+.cityItem button {
+  background-color: #941b1b;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  padding: 1px 4px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}

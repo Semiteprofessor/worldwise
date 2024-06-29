@@ -1,0 +1,15 @@
+.countryList {
+  margin-top: 20px;
+}
+
+.countryList ul {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.countryList h1 {
+  color: white;
+}

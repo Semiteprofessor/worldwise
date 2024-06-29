@@ -1,0 +1,114 @@
+{
+  "cities": [
+    {
+      "id": 1,
+      "city": "New York",
+      "country": "USA",
+      "coordinates": {
+        "lat": 40.7128,
+        "lng": -74.006
+      },
+      "flag": "🇺🇸",
+      "date": "2023-06-28T00:00:00Z"
+    },
+    {
+      "id": 2,
+      "city": "Los Angeles",
+      "country": "USA",
+      "coordinates": {
+        "lat": 34.0522,
+        "lng": -118.2437
+      },
+      "flag": "🇺🇸",
+      "date": "2023-06-28T00:00:00Z"
+    },
+    {
+      "id": 3,
+      "city": "Chicago",
+      "country": "USA",
+      "coordinates": {
+        "lat": 41.8781,
+        "lng": -87.6298
+      },
+      "flag": "🇺🇸",
+      "date": "2023-06-28T00:00:00Z"
+    },
+    {
+      "id": 4,
+      "city": "London",
+      "country": "UK",
+      "coordinates": {
+        "lat": 51.5074,
+        "lng": -0.1278
+      },
+      "flag": "🇬🇧",
+      "date": "2023-06-28T00:00:00Z"
+    },
+    {
+      "id": 5,
+      "city": "Paris",
+      "country": "France",
+      "coordinates": {
+        "lat": 48.8566,
+        "lng": 2.3522
+      },
+      "flag": "🇫🇷",
+      "date": "2023-06-28T00:00:00Z"
+    },
+    {
+      "id": 6,
+      "city": "Tokyo",
+      "country": "Japan",
+      "coordinates": {
+        "lat": 35.6895,
+        "lng": 139.6917
+      },
+      "flag": "🇯🇵",
+      "date": "2023-06-28T00:00:00Z"
+    },
+    {
+      "id": 7,
+      "city": "Sydney",
+      "country": "Australia",
+      "coordinates": {
+        "lat": -33.8688,
+        "lng": 151.2093
+      },
+      "flag": "🇦🇺",
+      "date": "2023-06-28T00:00:00Z"
+    },
+    {
+      "id": 8,
+      "city": "Berlin",
+      "country": "Germany",
+      "coordinates": {
+        "lat": 52.52,
+        "lng": 13.405
+      },
+      "flag": "🇩🇪",
+      "date": "2023-06-28T00:00:00Z"
+    },
+    {
+      "id": 9,
+      "city": "Moscow",
+      "country": "Russia",
+      "coordinates": {
+        "lat": 55.7558,
+        "lng": 37.6173
+      },
+      "flag": "🇷🇺",
+      "date": "2023-06-28T00:00:00Z"
+    },
+    {
+      "id": 10,
+      "city": "Rio de Janeiro",
+      "country": "Brazil",
+      "coordinates": {
+        "lat": -22.9068,
+        "lng": -43.1729
+      },
+      "flag": "🇧🇷",
+      "date": "2023-06-28T00:00:00Z"
+    }
+  ]
+}

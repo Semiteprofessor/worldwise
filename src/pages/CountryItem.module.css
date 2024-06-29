@@ -1,0 +1,19 @@
+.countryItem {
+  list-style: none;
+  color: white;
+  width: 120px;
+  background-color: #383f42;
+  border-radius: 5px;
+  border-left: 4px solid #ac8030;
+  padding: 10px 20px;
+  margin-top: 7px;
+  font-size: 14px;
+}
+
+.countryItem .group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
