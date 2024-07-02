@@ -39,7 +39,6 @@ const CitiesProvider = ({ children }) => {
       const data = await res.json();
 
       setCurrentCity(data);
-      console.log(data);
       setIsLoading(false);
     } catch (error) {
       setError(console.log("error loading cities", error));
