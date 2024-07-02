@@ -1,0 +1,16 @@
+.city {
+  background-color: #383f42;
+  display: flex;
+  flex-direction: column;
+  margin-top: 40px;
+  padding: 10px 20px;
+  border-radius: 5px;
+  color: white;
+  gap: 10px;
+}
+.city .row {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-top: 10px;
+}

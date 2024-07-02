@@ -3,8 +3,10 @@ import Loader from "../components/Loader";
 import Message from "../components/Message";
 import CountryItem from "../pages/CountryItem";
 import PropTypes from "prop-types";
+import { useCities } from "../contextApi/CitiesContext";
 
-const CountryList = ({ cities, isLoading }) => {
+const CountryList = () => {
+  const { cities, isLoading } = useCities();
   if (isLoading) return <Loader />;
 
   if (!cities.length)

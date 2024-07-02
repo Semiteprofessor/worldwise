@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
 import styles from "./CityItem.module.css";
 import PropTypes from "prop-types";
-import { v4 as uuidv4 } from "uuid";
+import { useCities } from "../contextApi/CitiesContext";
+// import { v4 as uuidv4 } from "uuid";
 
 const formatDate = (date) => {
   const dateOptions = {
@@ -11,14 +12,17 @@ const formatDate = (date) => {
   };
   return new Intl.DateTimeFormat("en-US", dateOptions).format(new Date(date));
 };
+
 const CityItem = ({ cityName }) => {
-  const myId = uuidv4();
-  const { city, flag, date, coordinates } = cityName;
+  const { currentCity } = useCities();
+  const { city, flag, date, coordinates, id } = cityName;
   return (
     <li>
       <Link
-        className={styles.cityItem}
-        to={`${myId}?lat=${coordinates.lat}&lng=${coordinates.lng}`}
+        className={`${styles.cityItem} ${
+          id === currentCity.id ? styles["cityItem-active"] : ""
+        }`}
+        to={`${id}?lat=${coordinates.lat}&lng=${coordinates.lng}`}
       >
         <div className={styles.group}>
           <span className={styles.name}>{flag}</span>
