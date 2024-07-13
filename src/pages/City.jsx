@@ -1,9 +1,8 @@
 import styles from "./City.module.css";
 import PropTypes from "prop-types";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useParams, useSearchParams } from "react-router-dom";
 import { useCities } from "../contextApi/CitiesContext";
-import Loader from "../components/Loader";
 import BackButton from "../components/BackButton";
 
 const formatDate = (date) => {
