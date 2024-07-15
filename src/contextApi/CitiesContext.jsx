@@ -1,10 +1,4 @@
-import {
-  createContext,
-  useContext,
-  useEffect,
-  useReducer,
-  useState,
-} from "react";
+import { createContext, useContext, useEffect, useReducer } from "react";
 
 const BASE_URL = "http://localhost:8080";
 
@@ -31,11 +25,21 @@ const reducer = (state, action) => {
     case "city/loaded":
       return { ...state, isLoading: false, currentCity: action.payload };
 
-    case "cities/created":
-      return {...state, isLoading: false, };
+    case "city/created":
+      return {
+        ...state,
+        isLoading: false,
+        cities: [...state.cities, action.payload],
+        currentCity: action.payload,
+      };
 
-    case "cities/deleted":
-      return {};
+    case "city/deleted":
+      return {
+        ...state,
+        isLoading: false,
+        cities: state.cities.filter((city) => city.id !== action.payload),
+        currentCity: {},
+      };
 
     case "rejected":
       return { ...state, isLoading: false, error: action.payload };
@@ -46,19 +50,14 @@ const reducer = (state, action) => {
 };
 
 const CitiesProvider = ({ children }) => {
-  const [{ cities, isLoading, currentCity }, dispatch] = useReducer(
+  const [{ cities, isLoading, currentCity, error }, dispatch] = useReducer(
     reducer,
     initialState
   );
-  // const [cities, setCities] = useState([]);
-  // const [currentCity, setCurrentCity] = useState({});
-  // const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState("");
   useEffect(() => {
     dispatch({ type: "loading" });
     const fetchCities = async () => {
       try {
-        setIsLoading(true);
         const res = await fetch(`${BASE_URL}/cities`);
         const data = await res.json();
         dispatch({ type: "cities/loaded", payload: data });
@@ -73,8 +72,9 @@ const CitiesProvider = ({ children }) => {
   }, []);
 
   const getCity = async (id) => {
+    if (id === currentCity.id) return;
+    dispatch({ type: "loading" });
     try {
-      dispatch({ type: "loading" });
       const res = await fetch(`${BASE_URL}/cities/${id}`);
       const data = await res.json();
 
@@ -89,8 +89,8 @@ const CitiesProvider = ({ children }) => {
   };
 
   const createCity = async (newCity) => {
+    dispatch({ type: "loading" });
     try {
-      dispatch({ type: "loading" });
       const res = await fetch(`${BASE_URL}/cities`, {
         method: "POST",
         headers: {
@@ -99,7 +99,7 @@ const CitiesProvider = ({ children }) => {
         body: JSON.stringify(newCity),
       });
       const data = await res.json();
-      dispatch({ type: "city/create", payload: data });
+      dispatch({ type: "city/created", payload: data });
     } catch (error) {
       dispatch({
         type: "rejected",
@@ -109,8 +109,8 @@ const CitiesProvider = ({ children }) => {
   };
 
   const deleteCity = async (id) => {
+    dispatch({ type: "loading" });
     try {
-      setIsLoading(true);
       await fetch(`${BASE_URL}/cities/${id}`, {
         method: "DELETE",
         headers: {
@@ -118,11 +118,12 @@ const CitiesProvider = ({ children }) => {
         },
       });
 
-      setCities((cities) => cities.filter((city) => city.id !== id));
+      dispatch({ type: "city/deleted", payload: id });
     } catch (error) {
-      setError(console.log("error loading data...", error));
-    } finally {
-      setIsLoading(false);
+      dispatch({
+        type: "rejected",
+        payload: "Error deleting city",
+      });
     }
   };
 
