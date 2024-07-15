@@ -11,12 +11,10 @@ import CountryList from "./pages/CountryList";
 import City from "./pages/City";
 import { CitiesProvider } from "./contextApi/CitiesContext";
 import Country from "./pages/Country";
-import Notification from "./components/Notification";
 
 const App = () => {
   return (
     <CitiesProvider>
-      <Notification />
       <BrowserRouter>
         <Routes>
           <Route index element={<Homepage />} />

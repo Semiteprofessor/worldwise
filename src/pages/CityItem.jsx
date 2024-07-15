@@ -22,7 +22,7 @@ const CityItem = ({ cityName }) => {
         className={`${styles.cityItem} ${
           id === currentCity.id ? styles["cityItem-active"] : ""
         }`}
-        to={`${id}?lat=${coordinates.lat}&lng=${coordinates.lng}`}
+        to={`${id}?lat=${coordinates?.lat}&lng=${coordinates?.lng}`}
       >
         <div className={styles.group}>
           <span className={styles.name}>{flag}</span>
@@ -36,7 +36,16 @@ const CityItem = ({ cityName }) => {
 };
 
 CityItem.propTypes = {
-  city: PropTypes.string.isRequired,
+  cityName: PropTypes.shape({
+    city: PropTypes.string.isRequired,
+    flag: PropTypes.string.isRequired,
+    date: PropTypes.string.isRequired,
+    coordinates: PropTypes.shape({
+      lat: PropTypes.number.isRequired,
+      lng: PropTypes.number.isRequired,
+    }),
+    id: PropTypes.string.isRequired,
+  }).isRequired,
 };
 
 export default CityItem;

@@ -6,6 +6,7 @@ import Message from "../components/Message";
 import Loader from "../components/Loader";
 import { ToastContainer, toast } from "react-toastify";
 import DatePicker from "react-datepicker";
+import { useCities } from "../contextApi/CitiesContext";
 
 const convertToEmoji = (countryCode) => {
   const codePoints = countryCode
@@ -18,16 +19,16 @@ const convertToEmoji = (countryCode) => {
 const BASE_URL = "https://api.bigdatacloud.net/data/reverse-geocode-client";
 
 const Form = () => {
+  const { createCity, isLoading } = useCities();
   const [lat, lng] = useUrlPosition();
   const [isLoadingGeocoding, setIsLoadingGeocoding] = useState(false);
 
-  const [city, setCity] = useState("");
+  const [city, setCityName] = useState("");
   const [country, setCountry] = useState("");
   const [date, setDate] = useState(new Date());
   const [notes, setNotes] = useState("");
   const [emoji, setEmoji] = useState("");
   const [geocodingError, setGeocodingError] = useState("");
-  const [startDate, setStartDate] = useState(new Date());
 
   useEffect(() => {
     if (!lat || !lng) return;
@@ -44,7 +45,7 @@ const Form = () => {
           throw new Error(
             "That doesn't seem to be a city. Please click somewhere else."
           );
-        setCity(data.city || data.locality || "");
+        setCityName(data.cityN || data.locality || "");
         setDate(new Date());
         setNotes("");
         setEmoji(convertToEmoji(data.countryCode));
@@ -73,10 +74,21 @@ const Form = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!city || !date) return;
+
+    const newCity = {
+      city,
+      country,
+      emoji,
+      date,
+      notes,
+      position: { lat, lng },
+    };
+    createCity(newCity);
     // Add your form submission logic here
     toast.success("Form submitted successfully!");
     // Reset form state
-    setCity("");
+    setCityName("");
     setCountry("");
     setDate(new Date());
     setNotes("");
@@ -84,21 +96,27 @@ const Form = () => {
   };
 
   return (
-    <form className={styles.form} onSubmit={handleSubmit}>
+    <form
+      className={`${styles.form} ${isLoading ? styles.loading : ""}`}
+      onSubmit={handleSubmit}
+    >
       <div className={styles.row}>
-        <label>City Name:</label>
+        <label htmlFor="city">City Name:</label>
         <input
+          id="city"
           type="text"
           value={city}
-          onChange={(e) => setCity(e.target.value)}
+          onChange={(e) => setCityName(e.target.value)}
         />
         <span className={styles.emoji}>{emoji}</span>
       </div>
       <div className={styles.row}>
         <label>When did you go to {city} ?</label>
         <DatePicker
-          startDate={startDate}
-          onChange={(date) => setStartDate(date)}
+          selected={date}
+          onChange={(date) => setDate(date)}
+          dateFormat="dd/MM/yyyy"
+          className="react-datepicker"
         />
         {/* <input
           type="text"

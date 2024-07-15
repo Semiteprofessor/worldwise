@@ -59,6 +59,18 @@
       "flag": "🇫🇷",
       "comment": "The city of lights.",
       "date": "2023-06-28T00:00:00Z"
+    },
+    {
+      "id": "9956",
+      "city": "Ariquemes",
+      "country": "Brazil",
+      "emoji": "🇧🇷",
+      "date": "2024-07-14T12:15:28.181Z",
+      "notes": "",
+      "position": {
+        "lat": "-9.85521608608867",
+        "lng": "-63.052082061767585"
+      }
     }
   ]
 }
