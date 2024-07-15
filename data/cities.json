@@ -71,6 +71,30 @@
         "lat": "-9.85521608608867",
         "lng": "-63.052082061767585"
       }
+    },
+    {
+      "id": "450a",
+      "city": "Castello de la Plana",
+      "country": "Spain",
+      "emoji": "🇪🇸",
+      "date": "2024-07-15T14:40:57.375Z",
+      "notes": "",
+      "position": {
+        "lat": "39.99513929066842",
+        "lng": "-0.024204254150390625"
+      }
+    },
+    {
+      "id": "16ad",
+      "city": "Surulere",
+      "country": "Nigeria",
+      "emoji": "🇳🇬",
+      "date": "2024-07-15T14:41:55.446Z",
+      "notes": "I love this place",
+      "position": {
+        "lat": "6.490495016333307",
+        "lng": "3.371086120605469"
+      }
     }
   ]
 }

@@ -7,6 +7,7 @@ import Loader from "../components/Loader";
 import { ToastContainer, toast } from "react-toastify";
 import DatePicker from "react-datepicker";
 import { useCities } from "../contextApi/CitiesContext";
+import { useNavigate } from "react-router-dom";
 
 const convertToEmoji = (countryCode) => {
   const codePoints = countryCode
@@ -20,6 +21,7 @@ const BASE_URL = "https://api.bigdatacloud.net/data/reverse-geocode-client";
 
 const Form = () => {
   const { createCity, isLoading } = useCities();
+  const navigate = useNavigate();
   const [lat, lng] = useUrlPosition();
   const [isLoadingGeocoding, setIsLoadingGeocoding] = useState(false);
 
@@ -85,6 +87,8 @@ const Form = () => {
       position: { lat, lng },
     };
     createCity(newCity);
+    navigate("/app/cities")
+    
     // Add your form submission logic here
     toast.success("Form submitted successfully!");
     // Reset form state
