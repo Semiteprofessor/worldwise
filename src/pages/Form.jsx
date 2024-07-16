@@ -28,8 +28,8 @@ const Form = () => {
   const [city, setCityName] = useState("");
   const [country, setCountry] = useState("");
   const [date, setDate] = useState(new Date());
-  const [notes, setNotes] = useState("");
-  const [emoji, setEmoji] = useState("");
+  const [comment, setComment] = useState("");
+  const [flag, setFlag] = useState("");
   const [geocodingError, setGeocodingError] = useState("");
 
   useEffect(() => {
@@ -50,7 +50,7 @@ const Form = () => {
         setCityName(data.cityN || data.locality || "");
         setDate(new Date());
         setNotes("");
-        setEmoji(convertToEmoji(data.countryCode));
+        setFlag(convertToEmoji(data.countryCode));
       } catch (error) {
         console.log("error fetching city data", error);
         setGeocodingError(error.message);
@@ -81,22 +81,22 @@ const Form = () => {
     const newCity = {
       city,
       country,
-      emoji,
+      coordinates: { lat, lng },
+      flag,
+      comment,
       date,
-      notes,
-      position: { lat, lng },
     };
     createCity(newCity);
-    navigate("/app/cities")
-    
+    navigate("/app/cities");
+
     // Add your form submission logic here
     toast.success("Form submitted successfully!");
     // Reset form state
     setCityName("");
     setCountry("");
     setDate(new Date());
-    setNotes("");
-    setEmoji("");
+    setComment("");
+    setFlag("");
   };
 
   return (
@@ -112,7 +112,7 @@ const Form = () => {
           value={city}
           onChange={(e) => setCityName(e.target.value)}
         />
-        <span className={styles.emoji}>{emoji}</span>
+        <span className={styles.emoji}>{flag}</span>
       </div>
       <div className={styles.row}>
         <label>When did you go to {city} ?</label>
@@ -133,8 +133,8 @@ const Form = () => {
         <textarea
           rows="4"
           cols="50"
-          value={notes}
-          onChange={(e) => setNotes(e.target.value)}
+          value={comment}
+          onChange={(e) => setComment(e.target.value)}
         ></textarea>
       </div>
       <div className={styles.button}>

@@ -1,4 +1,4 @@
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import styles from "./Map.module.css";
 import {
   MapContainer,
@@ -22,11 +22,12 @@ const Map = () => {
     position: geolocationPosition,
     getLocation,
   } = useGeolocation();
-
   const [mapLat, mapLng] = useUrlPosition();
 
   useEffect(() => {
-    if (mapLat && mapLng) setMapPosition([mapLat, mapLng]);
+    if (mapLat && mapLng) {
+      setMapPosition([mapLat, mapLng]);
+    }
   }, [mapLat, mapLng]);
 
   useEffect(() => {
@@ -34,6 +35,16 @@ const Map = () => {
       setMapPosition([geolocationPosition.lat, geolocationPosition.lng]);
     }
   }, [geolocationPosition]);
+
+  const handleMapDragEnd = (e) => {
+    const { lat, lng } = e.target.getCenter();
+    navigate(`/map?lat=${lat}&lng=${lng}`);
+  };
+
+  const handleMapZoom = (e) => {
+    const { zoom } = e.target;
+    navigate(`/map?lat=${mapPosition[0]}&lng=${mapPosition[1]}&zoom=${zoom}`);
+  };
 
   return (
     <div className={styles.mapContainer}>
@@ -47,24 +58,19 @@ const Map = () => {
         zoom={13}
         scrollWheelZoom={true}
         className={styles.map}
-        onDragend={(e) => {
-          const { lat, lng } = e.target.getCenter();
-          navigate(`/map?lat=${lat}&lng=${lng}`);
-        }}
-        onZoom={(e) => {
-          const { zoom } = e.target;
-          navigate(
-            `/map?lat=${mapPosition[0]}&lng=${mapPosition[1]}&zoom=${zoom}`
-          );
-        }}
+        onDragend={handleMapDragEnd}
+        onZoom={handleMapZoom}
       >
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png"
         />
-        {cities?.map((city) => (
+        {cities.map((city) => (
           <Marker
-            position={[city.coordinates?.lat, city.coordinates?.lng]}
+            position={[
+              Number(city.coordinates.lat),
+              Number(city.coordinates.lng),
+            ]}
             key={city.id}
           >
             <Popup>
@@ -82,17 +88,17 @@ const Map = () => {
 
 const ChangeCenter = ({ position }) => {
   const map = useMap();
-  map.setView(position);
-  return null;
+  useEffect(() => {
+    map.setView(position);
+  }, [position, map]);
 };
 
 const DetectClick = () => {
   const navigate = useNavigate();
-  const handleClick = (e) => {
+  useMapEvent("click", (e) => {
     const { lat, lng } = e.latlng;
     navigate(`form?lat=${lat}&lng=${lng}`);
-  };
-  useMapEvent("click", handleClick);
+  });
 };
 
 export default Map;

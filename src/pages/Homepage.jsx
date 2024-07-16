@@ -16,7 +16,7 @@ const Homepage = () => {
           of. Never forget your wonderful experiences, and you have wandered the
           world.
         </h2>
-        <Link to="/app" className="cta">
+        <Link to="/login" className="cta">
           Start tracking now
         </Link>
       </section>

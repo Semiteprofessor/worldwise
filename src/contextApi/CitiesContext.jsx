@@ -72,13 +72,12 @@ const CitiesProvider = ({ children }) => {
   }, []);
 
   const getCity = async (id) => {
-    if (id === currentCity.id) return;
+    if (Number(id) === currentCity.id) return;
     dispatch({ type: "loading" });
     try {
       const res = await fetch(`${BASE_URL}/cities/${id}`);
       const data = await res.json();
 
-      console.log(data);
       dispatch({ type: "city/loaded", payload: data });
     } catch (error) {
       dispatch({
