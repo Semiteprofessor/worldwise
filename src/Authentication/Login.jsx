@@ -4,8 +4,8 @@ import NavBar from "../components/NavBar";
 import { useAuth } from "../contextApi/FakeAuthContext";
 import { useNavigate } from "react-router-dom";
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("john@gmail.com");
+  const [password, setPassword] = useState("password123");
 
   const { login, isAuthenticated } = useAuth();
   const navigate = useNavigate();
@@ -20,7 +20,7 @@ const Login = () => {
   };
 
   useEffect(() => {
-    if (isAuthenticated) navigate("/app", {replace: true});
+    if (isAuthenticated) navigate("/app", { replace: true });
   }, [isAuthenticated, navigate]);
 
   return (

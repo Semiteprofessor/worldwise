@@ -1,10 +1,12 @@
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../contextApi/FakeAuthContext";
 import styles from "./User.module.css";
+import Loader from "../components/Loader";
 
 const User = () => {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
+  if (!user) return <Loader />;
 
   const handleClick = () => {
     logout();
