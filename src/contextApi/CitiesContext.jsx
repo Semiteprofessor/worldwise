@@ -122,9 +122,6 @@ const CitiesProvider = ({ children }) => {
     try {
       await fetch(`${BASE_URL}/cities/${id}`, {
         method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-        },
       });
 
       dispatch({ type: "city/deleted", payload: id });
