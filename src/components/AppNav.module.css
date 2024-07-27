@@ -1,57 +1,28 @@
-.appNav {
-  width: 250px;
-  background-color: #404242;
-  margin-top: 50px;
-  /* overflow-y: scroll; */
+.nav {
+  margin-top: 3rem;
+  margin-bottom: 2rem;
 }
 
-.tabList {
-  height: 30px;
-  display: flex;
+.nav ul {
   list-style: none;
-  font-size: 18px;
-  padding: 0;
-  margin: 0;
-}
-
-.tabs {
-  width: 50%;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  background: #80808013;
-  position: relative;
-  cursor: pointer;
+  background-color: #383f42;
+  border-radius: 7px;
 }
 
-.tabs a {
-  text-decoration: none;
-  color: white;
-}
-
-.tabs:not(:last-child) {
-  border-right: 1px solid rgba(0, 0, 0, 0.3);
-}
-
-.activeTabs {
-  background: #eeeded;
-  color: black;
-}
-
-.activeTabs a {
-  font-weight: 600;
-  color: black;
-  text-decoration: none;
-}
-
-.activeTabs::before {
-  content: "";
+.nav a:link,
+.nav a:visited {
   display: block;
-  position: absolute;
-  top: -4px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: calc(100% + 2px);
-  height: 4px;
-  background: #5893f1;
+  color: inherit;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 1.2rem;
+  font-weight: 700;
+  padding: 0.5rem 2rem;
+  border-radius: 5px;
+}
+
+/* CSS Modules feature */
+.nav a:global(.active) {
+  background-color: #c6c6c7;
 }
